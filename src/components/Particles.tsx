@@ -49,7 +49,7 @@ export const Particles = () => {
             },
           },
           opacity: {
-            value: 0.2,
+            value: 0.5,
             random: false,
             anim: {
               enable: false,
@@ -72,12 +72,12 @@ export const Particles = () => {
             enable: true,
             distance: 150,
             color: "#83060e",
-            opacity: 0.15,
-            width: 1,
+            opacity: 0.35,
+            width: 0.4,
           },
           move: {
             enable: true,
-            speed: 2,
+            speed: 1,
             direction: "none",
             random: false,
             straight: false,
@@ -111,8 +111,8 @@ export const Particles = () => {
               },
             },
             bubble: {
-              distance: 100,
-              size: 4,
+              distance: 130,
+              size: 5,
               duration: 2,
               opacity: 0.8,
               speed: 3,
