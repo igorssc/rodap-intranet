@@ -5,6 +5,8 @@ import { SnackbarProvider } from "notistack";
 
 const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  weight: "300",
 });
 
 export default function App({ Component, pageProps }: AppProps) {

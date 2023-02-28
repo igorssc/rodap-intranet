@@ -30,12 +30,12 @@ export const Input = ({
   return (
     <>
       <Zoom>
-        <label className="text-sm flex flex-col gap-3">
+        <label className="text-sm flex flex-col gap-3 dark:text-white">
           {label || ""}
 
           <input
             className={clsx(
-              "bg-[#F1F1F1] w-full rounded h-9 px-4",
+              "bg-[#F1F1F1] dark:bg-gray-700 w-full rounded h-9 px-4",
               props.type === "file" && "hidden",
               className
             )}
