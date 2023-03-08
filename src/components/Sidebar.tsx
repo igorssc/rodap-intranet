@@ -6,15 +6,18 @@ import {
   ChartLine,
   House,
   IconProps,
+  Question,
   SignOut,
   Users,
 } from "phosphor-react";
-import { ForwardRefExoticComponent } from "react";
+import { ForwardRefExoticComponent, useState } from "react";
+import { Dialog } from "./Dialog";
 
 interface ItemSidebarProps {
   isActive?: boolean;
   title: string;
-  href: string;
+  action?: () => void;
+  href?: string;
   alert?: string;
   alertScheme?: "primary" | "secondary";
   _icon: ForwardRefExoticComponent<
@@ -26,6 +29,7 @@ const ItemSidebar = ({
   isActive = false,
   title,
   href,
+  action,
   alert,
   alertScheme = "primary",
   _icon,
@@ -34,7 +38,8 @@ const ItemSidebar = ({
     <>
       <li>
         <Link
-          href={href}
+          href={href || "#"}
+          {...(action && { onClick: action })}
           className={clsx(
             "flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700",
             isActive
@@ -65,6 +70,8 @@ const ItemSidebar = ({
 export const Sidebar = () => {
   const { pathname } = useRouter();
 
+  const [isOpenDialog, setIsOpenDialog] = useState(false);
+
   return (
     <>
       <aside
@@ -80,31 +87,36 @@ export const Sidebar = () => {
                 icon: House,
                 href: "/dashboard",
               },
+              { title: "Suporte", icon: Question, href: "/suporte" },
               {
                 title: "Relatórios",
                 icon: ChartLine,
-                href: "/",
+                href: "/relatorios",
               },
               {
                 title: "Notificações",
                 icon: Bell,
-                href: "/",
+                href: "/notificacoes",
               },
               {
                 title: "Usuários",
                 icon: Users,
-                href: "/",
+                href: "/usuarios",
               },
               {
                 title: "Sair",
                 icon: SignOut,
-                href: "/",
+                noLink: true,
+                action: () => setIsOpenDialog(true),
               },
             ].map((item, index) => (
               <ItemSidebar
                 title={item.title}
                 _icon={item.icon}
-                href={item.href}
+                {...(!item.noLink
+                  ? { href: item.href }
+                  : { action: item.action })}
+                {...(item.action && { action: item.action })}
                 key={index}
                 isActive={pathname === item.href}
               />
@@ -112,6 +124,7 @@ export const Sidebar = () => {
           </ul>
         </div>
       </aside>
+      <Dialog.Exit open={isOpenDialog} setOpen={setIsOpenDialog} />
     </>
   );
 };

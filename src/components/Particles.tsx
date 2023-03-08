@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { ThemeContext } from "@/contexts/ThemeContext";
+import { useCallback, useContext, useEffect, useState } from "react";
 import ParticlesComponent from "react-particles";
 import { loadFull } from "tsparticles";
 
 export const Particles = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -30,9 +33,7 @@ export const Particles = () => {
                 },
               },
               color: {
-                value: window.matchMedia("(prefers-color-scheme: dark)").matches
-                  ? "#ffffff"
-                  : "#83060e",
+                value: theme === "dark" ? "#ffffff" : "#83060e",
               },
               shape: {
                 type: ["circle"],
@@ -72,9 +73,7 @@ export const Particles = () => {
               line_linked: {
                 enable: true,
                 distance: 150,
-                color: window.matchMedia("(prefers-color-scheme: dark)").matches
-                  ? "#ffffff"
-                  : "#83060e",
+                color: theme === "dark" ? "#ffffff" : "#83060e",
                 opacity: 0.35,
                 width: 0.4,
               },

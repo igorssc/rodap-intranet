@@ -1,14 +1,11 @@
+import { ThemeContext } from "@/contexts/ThemeContext";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Logo } from "./Logo";
+import { ToggleTheme } from "./ToggleTheme";
 
 export const Navbar = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    window.matchMedia("(prefers-color-scheme: dark)").matches &&
-      setTheme("dark");
-  }, []);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -50,6 +47,7 @@ export const Navbar = () => {
               </a>
             </div>
             <div className="flex items-center">
+              <ToggleTheme />
               <div className="flex items-center ml-3">
                 <div>
                   <button
@@ -63,7 +61,7 @@ export const Navbar = () => {
                       className="w-8 h-8 rounded-full"
                       width={32}
                       height={32}
-                      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                      src="https://avatars.githubusercontent.com/u/26682297?v=4"
                       alt="user photo"
                     />
                   </button>

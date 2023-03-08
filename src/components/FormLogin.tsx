@@ -1,5 +1,6 @@
+import { ThemeContext } from "@/contexts/ThemeContext";
 import { useSnackbar } from "notistack";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Fade from "react-reveal/Fade";
 import { Box } from "./Box";
 import { Button } from "./Button";
@@ -13,16 +14,11 @@ export const FormLogin = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
+  const { theme } = useContext(ThemeContext);
+
   const handleLogin = () => {
     enqueueSnackbar("Usuário ou senha incorretos", { variant: "error" });
   };
-
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    window.matchMedia("(prefers-color-scheme: dark)").matches &&
-      setTheme("dark");
-  }, []);
 
   return (
     <>
