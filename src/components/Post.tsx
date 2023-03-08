@@ -60,7 +60,14 @@ export const Post = () => {
             <span className="font-extrabold">Igor Santos</span> compartilhou uma
             publicação
             <br />
-            <small>{new Date().toISOString()}</small>
+            <small>
+              {new Date().toLocaleDateString("pt-BR", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </small>
           </div>
           <ChatCircleDots
             weight="light"

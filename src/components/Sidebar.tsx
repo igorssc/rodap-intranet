@@ -6,6 +6,7 @@ import {
   ChartLine,
   House,
   IconProps,
+  NotePencil,
   Question,
   SignOut,
   Users,
@@ -94,6 +95,11 @@ export const Sidebar = () => {
                 href: "/relatorios",
               },
               {
+                title: "Blog",
+                icon: NotePencil,
+                href: "/blog",
+              },
+              {
                 title: "Notificações",
                 icon: Bell,
                 href: "/notificacoes",
@@ -118,7 +124,10 @@ export const Sidebar = () => {
                   : { action: item.action })}
                 {...(item.action && { action: item.action })}
                 key={index}
-                isActive={pathname === item.href}
+                isActive={
+                  pathname === item.href ||
+                  "/" + pathname.split("/")[1] === item.href
+                }
               />
             ))}
           </ul>

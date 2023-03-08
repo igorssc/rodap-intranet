@@ -13,6 +13,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   legend?: string;
   value: any;
   setValue: Dispatch<SetStateAction<any>>;
+  schema?: "primary" | "secondary";
 }
 
 export const Input = ({
@@ -21,6 +22,7 @@ export const Input = ({
   className,
   label,
   legend,
+  schema = "primary",
   ...props
 }: InputProps) => {
   const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +37,11 @@ export const Input = ({
 
           <input
             className={clsx(
-              "bg-[#F1F1F1] dark:bg-gray-700 w-full rounded h-9 px-4",
+              "w-full rounded h-9 px-4",
               props.type === "file" && "hidden",
+              schema === "primary"
+                ? "bg-[#F1F1F1] dark:bg-gray-700"
+                : "bg-white dark:bg-gray-800 placeholder-black",
               className
             )}
             {...(props.type !== "file" && { value: value })}
@@ -47,7 +52,14 @@ export const Input = ({
           />
 
           {props.type === "file" && (
-            <div className="bg-[#F1F1F1] text-[#858585] w-full rounded h-9 px-4 flex gap-3 items-center focus-within:outline focus-within:outline-[2px]">
+            <div
+              className={clsx(
+                "w-full rounded h-9 px-4 flex gap-3 items-center focus-within:outline focus-within:outline-[2px]",
+                schema === "primary"
+                  ? "bg-[#F1F1F1] dark:bg-gray-700"
+                  : "bg-white dark:bg-gray-800 placeholder-black"
+              )}
+            >
               <input
                 type="text"
                 className="w-0 h-0 absolute bg-transparent"

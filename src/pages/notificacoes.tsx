@@ -90,7 +90,7 @@ export default function Notificacoes() {
           </span>
         </div>
         {Array.from({ length: 10 }, (_, i) => (
-          <div key={i} className="flex gap-4 items-center">
+          <div key={i} className="flex items-center gap-4">
             <input
               type="checkbox"
               className="w-6 h-6 cursor-pointer"

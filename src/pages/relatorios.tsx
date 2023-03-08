@@ -61,21 +61,19 @@ export default function Relatorios() {
       </Head>
       <Navbar />
       <Sidebar />
-      <Main>
-        <div className="grid grid-cols-2 gap-6">
-          <Box>
-            <h2 className="text-lg mb-8">Usuários</h2>
-            <Line data={data} options={options} />
-          </Box>
-          <Box>
-            <h2 className="text-lg mb-8">Acessos</h2>
-            <Line data={data} options={options} />
-          </Box>
-          <Box>
-            <h2 className="text-lg mb-8">Acessos (por horário)</h2>
-            <Scatter options={options} data={dataScatter} />
-          </Box>
-        </div>
+      <Main className="grid grid-cols-2 gap-6">
+        <Box>
+          <h2 className="text-lg mb-8">Usuários</h2>
+          <Line data={data} options={options} />
+        </Box>
+        <Box>
+          <h2 className="text-lg mb-8">Acessos</h2>
+          <Line data={data} options={options} />
+        </Box>
+        <Box>
+          <h2 className="text-lg mb-8">Acessos (por horário)</h2>
+          <Scatter options={options} data={dataScatter} />
+        </Box>
       </Main>
     </>
   );

@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import { Plus } from "phosphor-react";
 import { useState } from "react";
 
 export default function Usuarios() {
@@ -18,11 +20,19 @@ export default function Usuarios() {
       <Navbar />
       <Sidebar />
       <Main>
+        <Link
+          href="usuarios/criar-usuario"
+          className="flex gap-4 text-lg font-bold items-center cursor-pointer dark:text-white"
+        >
+          <Plus />
+          Criar Usuário
+        </Link>
         <Input
           value={searchUserValue}
           setValue={setSearchUserValue}
           placeholder="Pesquisar"
-          className="!bg-white dark:!bg-gray-800 rounded-lg py-6"
+          className="rounded-lg py-6"
+          schema="secondary"
         />
         <Box className="flex items-center gap-4">
           <Image
